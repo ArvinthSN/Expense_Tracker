@@ -19,6 +19,22 @@ class ExpenseBase(BaseModel):
             raise ValueError("amount must be greater than zero")
         return value
 
+    @field_validator("category")
+    @classmethod
+    def validate_category(cls, value: str) -> str:
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("category cannot be empty")
+        return stripped
+
+    @field_validator("description")
+    @classmethod
+    def validate_description(cls, value: str) -> str:
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("description cannot be empty")
+        return stripped
+
     model_config = ConfigDict(str_strip_whitespace=True)
 
 
@@ -38,5 +54,12 @@ class ExpenseRead(BaseModel):
     transaction_date: date
     created_at: datetime
     updated_at: datetime
+
+    @field_validator("amount", mode="before")
+    @classmethod
+    def coerce_amount(cls, value):
+        if isinstance(value, Decimal):
+            return str(value)
+        return value
 
     model_config = ConfigDict(from_attributes=True)
