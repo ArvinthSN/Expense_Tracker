@@ -1,0 +1,55 @@
+schema: spec-driven
+
+context: |
+  # Smart Expense Tracker
+
+  ## Project Overview
+  A full-stack expense tracking application built using
+  Spec-Driven Development with OpenSpec.
+
+  ## Technology Stack
+  - Frontend: React + TypeScript + Vite
+  - Styling: Tailwind CSS
+  - Backend: Python + FastAPI
+  - Database: PostgreSQL
+  - ORM: SQLAlchemy
+  - Backend validation: Pydantic
+  - Frontend testing: Vitest and React Testing Library
+  - Backend testing: Pytest
+
+  ## Project Structure
+
+  smart-expense-tracker/
+  ├── openspec/
+  │   ├── config.yaml
+  │   ├── specs/
+  │   └── changes/
+  ├── frontend/
+  │   └── src/
+  │       ├── components/
+  │       ├── pages/
+  │       ├── services/
+  │       ├── hooks/
+  │       ├── types/
+  │       └── App.tsx
+  ├── backend/
+  │   └── app/
+  │       ├── api/
+  │       ├── models/
+  │       ├── schemas/
+  │       ├── services/
+  │       ├── repositories/
+  │       └── main.py
+  ├── tests/
+  └── README.md
+
+  ## Architecture Rules
+  - Keep frontend and backend code separate.
+  - The frontend communicates with the backend through REST APIs.
+  - PostgreSQL is the persistent database.
+  - Follow the agreed API contract.
+  - Do not duplicate business logic in the frontend.
+  - Validate all incoming data on the backend.
+  - Include appropriate automated tests.
+  - Review existing code before creating or modifying files.
+  - Follow OpenSpec for significant feature changes.
