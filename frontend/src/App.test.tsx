@@ -54,22 +54,26 @@ describe('Expense dashboard', () => {
     }) as typeof fetch
   })
 
-  it('renders dashboard summary and recent expenses', async () => {
+  it('renders the SmartSpend dashboard shell and recent expenses', async () => {
     render(<App />)
 
-    expect(await screen.findByRole('heading', { name: /dashboard/i })).toBeInTheDocument()
+    expect(await screen.findByText('SmartSpend')).toBeInTheDocument()
+    expect(screen.getByText('Good morning, Arvinth!')).toBeInTheDocument()
     expect(screen.getByText('Total Spent')).toBeInTheDocument()
-    expect(screen.getByText('Recent transactions')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /recent transactions/i })).toBeInTheDocument()
   })
 
   it('validates required expense fields before submitting', async () => {
     const user = userEvent.setup()
     render(<App />)
 
-    const addButton = await screen.findByRole('button', { name: 'New expense' })
-    await user.click(addButton)
-    await user.click(screen.getByRole('button', { name: 'Add expense' }))
+    const addButtons = await screen.findAllByRole('button', { name: /^add expense$/i })
+    await user.click(addButtons[0])
 
+    const formSubmitButton = screen.getAllByRole('button', { name: /^add expense$/i }).at(-1)
+    expect(formSubmitButton).toBeTruthy()
+
+    await user.click(formSubmitButton!)
     expect(screen.getByText('Amount must be greater than zero.')).toBeInTheDocument()
   })
 })

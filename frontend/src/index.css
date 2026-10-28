@@ -6,8 +6,8 @@
   font-family: Inter, 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #0f172a;
-  background-color: #f8fafc;
+  color: #e2e8f0;
+  background: #080d1f;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -22,7 +22,10 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f8fafc;
+  background:
+    radial-gradient(circle at top, rgba(139, 92, 246, 0.25), transparent 28%),
+    radial-gradient(circle at 80% 12%, rgba(16, 185, 129, 0.12), transparent 25%),
+    #080d1f;
 }
 
 #root {
@@ -40,9 +43,29 @@ select {
   font: inherit;
 }
 
-input:focus,
-button:focus,
-select:focus {
-  outline: 3px solid rgba(16, 185, 129, 0.2);
+button,
+input,
+select {
+  outline: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(16, 185, 129, 0.9);
   outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2);
 }
